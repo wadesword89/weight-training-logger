@@ -1,8 +1,18 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = 3000;
+
+const MONGO_URI = 'mongodb+srv://shay:afirocks@cluster0.avuh6yo.mongodb.net/workouts?retryWrites=true&w=majority';
+
+mongoose
+    .connect(MONGO_URI)
+    .then(() => {
+        console.log('Connected to Mongo DB.');
+    })
+    .catch(err => console.log(err));
 
 // handle parsing request body
 app.use(express.json());
@@ -11,13 +21,17 @@ app.use(express.urlencoded({ extended: true }));
 // handle requests for static files
 app.use(express.static(path.resolve(__dirname, '../client')));
 
+// route hander to respond with main app
 app.use('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-})
+}) 
 
 
 
-
+// catch-all route handler for any requests to an unknown route
+app.use('*', (req, res) => {
+    res.sendStatus(404);
+  });
 
 //configure express global error handler
 app.use((err, req, res, next) => {
@@ -36,10 +50,10 @@ app.use((err, req, res, next) => {
   
   });
 
+//start server
+ app.listen(PORT, () => {
+   console.log(`Server listening on port: ${PORT}`);
+ });
 
-// start server
-app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}`);
-  });
   
   module.exports = app;

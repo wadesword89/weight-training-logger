@@ -11,7 +11,7 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js',
     },
-    mode: 'development',
+    mode: process.env.NODE_ENV,
     module: {
         rules: [
             {
