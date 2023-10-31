@@ -2,9 +2,11 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 
+
 const app = express();
 const PORT = 3000;
 
+// connect to MongoDB
 const MONGO_URI = 'mongodb+srv://shay:afirocks@cluster0.avuh6yo.mongodb.net/workouts?retryWrites=true&w=majority';
 
 mongoose
@@ -13,6 +15,11 @@ mongoose
         console.log('Connected to Mongo DB.');
     })
     .catch(err => console.log(err));
+
+
+// require routers
+const workoutRouter = require('./routes/workouts');
+
 
 // handle parsing request body
 app.use(express.json());
