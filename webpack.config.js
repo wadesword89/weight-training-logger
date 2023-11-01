@@ -1,50 +1,50 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: [
-        './client/index.js',
-    ],
+    mode: process.env.NODE_ENV,
+    entry: {
+        src:'./client/index.js',
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js',
     },
-    mode: process.env.NODE_ENV,
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
                 }
+                
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.s?ss/,
+                exclude: /node_modules/,
                 use: ["style-loader", "css-loader", "sass-loader"],
             }
         ],
     },
     plugins: [
         new HtmlWebpackPlugin( {
+            title: 'Development',
             template: './client/index.html'
         })
     ],
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'dist'),
             publicPath: '/',
+            directory: path.resolve(__dirname, 'dist'),
         },
         // enable HMR on the devServer
-        hot: true,
-        // fallback to root for other urls
-        historyApiFallback: true,
-        headers: { 'Access-Control-Allow-Origin': '*' },
+        // hot: true,
+        // // fallback to root for other urls
+        // historyApiFallback: true,
+        // headers: { 'Access-Control-Allow-Origin': '*' },
         /**
          * proxy is required in order to make api calls to
          * express server while using hot-reload webpack server
@@ -52,14 +52,15 @@ module.exports = {
          * to localhost:3000/api/* (where our Express server is running)
          */
         proxy: {
-            '/api/**': {
-                target: 'http://localhost:3000/',
-                secure: false,
-            },
-            '/assets/**': {
-                target: 'http://localhost:3000/',
-                secure: false,
-            },
+            'api/':'http://localhost:3000/'
+            // '/api/**': {
+            //     target: 'http://localhost:3000/',
+            //     secure: false,
+            // },
+            // '/assets/**': {
+            //     target: 'http://localhost:3000/',
+            //     secure: false,
+            // },
         },
     },
     resolve: {

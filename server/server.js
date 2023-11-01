@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
@@ -16,7 +17,15 @@ mongoose
     .catch(err => console.log(err));
 
 // require routers
-const workoutRouter = require('./routes/workouts.js');
+const workoutRouter = require('./routes/api.js');
+
+// handle CORS policy
+// app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+}));
 
 // handle parsing request body
 app.use(express.json());
@@ -26,9 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/client', express.static(path.resolve(__dirname, '../client')));
 
 
-
 app.use('/workouts', workoutRouter);
-
 
 
 // route hander to respond with main app
