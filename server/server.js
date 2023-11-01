@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 
-
 const app = express();
 const PORT = 3000;
 
@@ -16,24 +15,26 @@ mongoose
     })
     .catch(err => console.log(err));
 
-
 // require routers
-const workoutRouter = require('./routes/workouts');
-
+const workoutRouter = require('./routes/workouts.js');
 
 // handle parsing request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // handle requests for static files
-app.use(express.static(path.resolve(__dirname, '../client')));
+app.use('/client', express.static(path.resolve(__dirname, '../client')));
+
+
+
+app.use('/workouts', workoutRouter);
+
+
 
 // route hander to respond with main app
-app.use('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-}) 
-
-
+// app.use('/', (req, res) => {
+//     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// }) 
 
 // catch-all route handler for any requests to an unknown route
 app.use('*', (req, res) => {
