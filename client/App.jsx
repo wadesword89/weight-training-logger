@@ -1,11 +1,11 @@
-// import React, {useState, useEffect} from "react";
-// import ReactDOM from
+import React from "react";
+import ReactDOM from "react-dom/client";
 // import fetch from 'node-fetch';
 
-// function App() {
-//     return (
-//         <h1>TEST</h1>
-//     );
-// }
+const App = () => {
+    return (
+        <h1>TESTING</h1>
+    );
+}
 
-export default App;
+export default App
