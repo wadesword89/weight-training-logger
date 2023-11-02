@@ -1,54 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-    const [workout, setWorkout] = useState([]);
+  const [workout, setWorkout] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/workouts')
-            .then(res => res.json())
-            .then(data => {
-                console.log("WORKOUT DATA :", data[0].date);
-                setWorkout(data);
-                //[{}, {}, {}]
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    },[])
+  useEffect(() => {
+    fetch('http://localhost:3000/workouts')
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log('WORKOUT DATA :', data);
+        setWorkout(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Exercise</th>
-                    <th>Weight</th>
-                    <th>Reps</th>
-                    <th>Sets</th>
-                    <th>Edits</th>
-                </tr>
-            </thead>
-            <tbody>
-                {workout.map((workout, index) => {
-                    <tr key={workout._id}>
-                        <td>{workout.date}</td>
-                        <td>{workout.exercise}</td>
-                        <td>{workout.weight}</td>å
-                        <td>{workout.rep}</td>
-                        <td>{workout.set}</td>
-                        <td>
-                            <div>
-                                <Link to={`./workouts/details/${workout.id}`}>
-                                    Details
-                                </Link>
-                            </div>
-                        </td>
-                    </tr>
-                })}
-            </tbody>
-        </table>
-    )
-}
+  return (
+    <div>
+      <div className='create centered'>
+        <Link to="./worksouts/create"><i className="fa-solid fa-circle-plus"> Log Exercise</i></Link>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Exercise</th>
+            <th>Weight</th>
+            <th>Reps</th>
+            <th>Sets</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {workout.map((workoutObj, index) => {
+            return (
+              <tr key={workoutObj._id}>
+                <td>{workoutObj.date}</td>
+                <td>{workoutObj.exercise}</td>
+                <td>{workoutObj.weight}</td>
+                <td>{workoutObj.rep}</td>
+                <td>{workoutObj.set}</td>
+                <td>
+                  <span className='icons detail'>
+                    <Link to={`./workouts/details/${workoutObj._id}`}>
+                    <i className="fa-solid fa-circle-info"></i>
+                    </Link>
+                  </span>
+                  <span className="icons edit">
+                      <Link to={`./workouts/edit/${workoutObj._id}`}><i className="fa-solid fa-pen-to-square"></i></Link>
+                  </span>
+                  <span className="icons delete">
+                      <Link to={`./workouts/delete/${workoutObj._id}`}>
+                      <i className="fa-solid fa-trash"></i>
+                      </Link>
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

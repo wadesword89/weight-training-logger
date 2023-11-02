@@ -1,4 +1,76 @@
-body {
-    background: rgb(168, 168, 202);
-    font-family: Georgia, 'Times New Roman', Times, serif
+html {
+    margin: 0px;
+    padding: 0px;
 }
+body {
+    background: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2c3e70;
+    margin: 0px;
+    padding: 0px;
+}
+.centered {
+    margin: 10 auto 0 auto;
+    width: 100%;
+    text-align: center;
+}
+.create i{
+    color: rgb(29, 178, 29);
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.edit i{
+    color: orange;
+}
+.delete i{
+    color: rgb(183, 19, 19);
+}
+
+.detail i{
+    color: rgb(134, 141, 224);
+}
+a {
+    text-decoration: none;
+    color: #2c3e70;
+  }
+
+/* NAVBAR */
+header {
+    background-color: #455170;
+    margin: 0px;
+    padding: 0px;
+}
+nav {
+    display: flex;
+    padding: 10px;
+}
+
+nav ul{
+    display: flex;
+    gap: 20px;
+}
+
+/* TABLE STYLING */
+/* table, td, th {
+    border: 1px solid #2c3e70;
+  } */
+table {
+    table-layout: fixed;
+    width: 75%;
+    border-collapse: collapse;
+    border: 2px solid #2c3e70;
+    margin: 0 auto 0 auto;
+  }
+  th {
+    font-size: 18px;
+  }
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .icons {
+    padding-left: 10px;
+  }

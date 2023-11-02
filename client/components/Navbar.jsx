@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    return (
-        <nav>
-            <ul>
-                <li>
-                    <Link to='/'>LIFT LOGGER APP</Link>
-                </li>
-                <li>
-                    <Link to='/workouts'>Weight Lifting Log</Link>
-                </li>
-                <li>
-                    <Link to='/'>Workouts</Link>
-                </li>
-            </ul>
-        </nav>
-    )
-}
+  return (
+    <h2 className='centered'>
+       <Link to="/">  <i className="fa-solid fa-dumbbell">  Weight Lifting Log </i> <i className="fa-solid fa-dumbbell"></i> </Link>
+    </h2>
+  );
+};
 
-export default Navbar
+export default Navbar;
