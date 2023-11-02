@@ -5,8 +5,8 @@ const workoutController = {};
 
 //create a workout
 workoutController.createWorkout = (req, res, next) => {
-    const { exercise, weight, rep, set } = req.body;
-    const date = Date.parse(req.body.date);
+    const { date, exercise, weight, rep, set } = req.body;
+
     if(!date || !exercise || !weight || !rep || !set) {
         return next({
             log: `Missing entry in workoutController.createWorkout`,
@@ -65,9 +65,8 @@ workoutController.getAWorkout = (req, res, next) => {
 
 // update a workout
 workoutController.updateWorkout = (req, res, next) => {
-    const { exercise, weight, rep, set } = req.body;
-    const date = Date.parse(req.body.date);
-    const { id} = req.params;
+    const { date, exercise, weight, rep, set } = req.body;
+    const { id } = req.params;
 
     if(!date || !exercise || !weight || !rep || !set) {
         return next({

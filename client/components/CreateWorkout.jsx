@@ -1,15 +1,87 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateWorkout = () => {
-    return (
-        <div>
-            <h1>Create Workout</h1>
-            <form action="">
-                <input type="text" />
-                <button>Add Exercise</button>
-            </form>
-        </div>
-    )
-}
+  const [date, setDate] = useState('');
+  const [exercise, setExercise] = useState('');
+  const [weight, setWeight] = useState('');
+  const [rep, setRep] = useState('');
+  const [set, setSet] = useState('');
+  const navigate = useNavigate();
 
-export default CreateWorkout
+  const handleSaveWorkout = () => {
+    const data = {
+      date,
+      exercise,
+      weight,
+      rep,
+      set,
+    };
+    fetch('http://localhost:3000/workouts/', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((res) => res.json())
+        .then(data => {
+            console.log(data)
+            navigate('/');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+  };
+
+  return (
+    <div className='centered'>
+      <h1>Create Exercise</h1>
+      <div>
+        <div>
+          <label>Date: </label>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Exercise: </label>
+          <input
+            type="text"
+            value={exercise}
+            onChange={(e) => setExercise(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Weight (lb): </label>
+          <input
+            type="text"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Rep: </label>
+          <input
+            type="text"
+            value={rep}
+            onChange={(e) => setRep(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Set: </label>
+          <input
+            type="text"
+            value={set}
+            onChange={(e) => setSet(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSaveWorkout}>Save Exercise</button>
+      </div>
+    </div>
+  );
+};
+
+export default CreateWorkout;

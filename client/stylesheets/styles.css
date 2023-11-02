@@ -1,17 +1,14 @@
-html {
-    margin: 0px;
-    padding: 0px;
-}
+
 body {
     background: #eeeeee;
     font-family: Arial, Helvetica, sans-serif;
     color: #2c3e70;
-    margin: 0px;
+    /* margin: 20px; */
     padding: 0px;
 }
 .centered {
-    margin: 10 auto 0 auto;
-    width: 100%;
+    margin: 25px auto 0 auto;
+    /* width: 100%; */
     text-align: center;
 }
 .create i{
@@ -65,6 +62,7 @@ table {
   th {
     font-size: 18px;
   }
+  
   th,
   td {
     padding: 10px;

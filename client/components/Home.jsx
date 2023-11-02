@@ -18,15 +18,16 @@ const Home = () => {
 
   return (
     <div>
+      <blockquote className='centered'>"We are what we repeatedly do. Excellence, then, is not an act, but a habit."" -Will Durant</blockquote>
       <div className='create centered'>
-        <Link to="./worksouts/create"><i className="fa-solid fa-circle-plus"> Log Exercise</i></Link>
+        <Link to="./workouts/create"><i className="fa-solid fa-circle-plus"> Log An Exercise</i></Link>
       </div>
       <table>
         <thead>
           <tr>
             <th>Date</th>
             <th>Exercise</th>
-            <th>Weight</th>
+            <th>Weight (lb) </th>
             <th>Reps</th>
             <th>Sets</th>
             <th></th>
