@@ -38,15 +38,15 @@ const CreateWorkout = () => {
     <div className='centered'>
       <h1>Create Exercise</h1>
       <div>
-        <div>
+        <div className='spaced'>
           <label>Date: </label>
           <input
-            type="date"
+            type="text"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
         </div>
-        <div>
+        <div className='spaced'>
           <label>Exercise: </label>
           <input
             type="text"
@@ -54,7 +54,7 @@ const CreateWorkout = () => {
             onChange={(e) => setExercise(e.target.value)}
           />
         </div>
-        <div>
+        <div className='spaced'>
           <label>Weight (lb): </label>
           <input
             type="text"
@@ -62,7 +62,7 @@ const CreateWorkout = () => {
             onChange={(e) => setWeight(e.target.value)}
           />
         </div>
-        <div>
+        <div className='spaced'>
           <label>Rep: </label>
           <input
             type="text"
@@ -70,7 +70,7 @@ const CreateWorkout = () => {
             onChange={(e) => setRep(e.target.value)}
           />
         </div>
-        <div>
+        <div className='spaced'>
           <label>Set: </label>
           <input
             type="text"
