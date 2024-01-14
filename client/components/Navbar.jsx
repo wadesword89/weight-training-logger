@@ -6,6 +6,7 @@ const Navbar = () => {
     <h2 className='centered'>
        <Link to="/">  <i className="fa-solid fa-dumbbell">  SWOLE - MATE </i> <i className="fa-solid fa-dumbbell"></i> </Link>
     </h2>
+    
   );
 };
 

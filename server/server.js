@@ -33,14 +33,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // handle requests for static files
-app.use(express.static(path.resolve(__dirname, '../client')));
+app.use(express.static(path.resolve(__dirname, '../dist'))); //***Notice how it server ../dist***
 
 app.use('/workouts', workoutRouter);
 
 // route hander to respond with main app
-// app.use('/', (req, res) => {
-//     res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-// })
+app.use('/', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '../client/index.html')); //***Needed to serve css, bundle.js, ect.. ***
+})
 
 // catch-all route handler for any requests to an unknown route
 app.use('*', (req, res) => {

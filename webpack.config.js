@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: {
-        src:'./client/index.js',
-    },
+    entry: './client/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
